@@ -4,10 +4,11 @@ import com.grupo02.Pokemon;
 
 public class Bulbasaur extends Pokemon {
 
-    // Bulbasaur, Ivysaur, Venusaur
+    // "Bulbasaur", "Ivysaur", "Venusaur"
 
     public Bulbasaur(){
         super("Bulbasaur", 0, 400);
+        this.setEstagios(new String[]{"Bulbasaur", "Ivysaur", "Venusaur"});
         this.setNomeDosGolpes(new String[][]{   {"Esfera de Energia", "Semente Sanguessuga", "Folha Navalha"},
                                                 {"Deslize de Grama", "Bala de Sementes", "Corte Duplo"},
                                                 {"Raio Solar", "Fúria das Plantas", "Nevasca de Pétalas"}
