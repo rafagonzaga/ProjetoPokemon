@@ -69,10 +69,6 @@ public class Batalha {
          */
 
 
-
-
-
-
         /*
         System.out.println(rafael.getPedraEvolucao());
         rafael.setPedraEvolucao(1);
