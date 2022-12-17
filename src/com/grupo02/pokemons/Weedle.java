@@ -4,10 +4,13 @@ import com.grupo02.Pokemon;
 
 public class Weedle extends Pokemon {
 
+    private Integer hpInicial = 470;
     // "Weedle", "Kakuna", "Beedrill"
 
     public Weedle(){
-        super("Weedle", 0, 450);
+        super("Weedle", 0);
+        this.setVidaInicial(hpInicial);
+        this.setPontosDeVida(hpInicial);
         this.setEstagios(new String[]{"Weedle", "Kakuna", "Beedrill"});
         this.setNomeDosGolpes(new String[][]{   {"Tiro de Estilingue", "Picada", "Ferroada Venenosa"},
                                                 {"Jato de Seda", "Picada Venenosa", "Arremesso de Teia"},

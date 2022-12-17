@@ -7,6 +7,7 @@ public class Pokemon {
 
     private String nome;
     private Integer nivel;
+    private Integer vidaInicial;
     private Integer pontosDeVida;
     private String[][] nomeDosGolpes;
     private String[] estagios;
@@ -18,9 +19,11 @@ public class Pokemon {
         this.nome = nome;
         this.nivel = nivel;
         this.pontosDeVida = pontosDeVida;
-//        ataquesPorNivel.put(1, new String[]{"Spark", "Thunder Shock", "Discharge"});
-//        ataquesPorNivel.put(2, new String[]{"Spark", "Thunder Shock", "Thunder"});
-//        ataquesPorNivel.put(3, new String[]{"Spark", "Thunder Shock", "Thunderbolt"});
+    }
+
+    public Pokemon(String nome, Integer nivel){
+        this.nome = nome;
+        this.nivel = nivel;
     }
 
     public Integer getPontosDeVida() {
@@ -29,6 +32,14 @@ public class Pokemon {
 
     public void setPontosDeVida(Integer pontosDeVida) {
         this.pontosDeVida = pontosDeVida;
+    }
+
+    public Integer getVidaInicial() {
+        return vidaInicial;
+    }
+
+    public void setVidaInicial(Integer vidaInicial) {
+        this.vidaInicial = vidaInicial;
     }
 
     public String getNome() {

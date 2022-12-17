@@ -5,8 +5,7 @@ import java.util.List;
 public class Jogador extends Treinador {
 
 //    private List<Pokemon> pokemons;
-    private Integer pedraEvolucao = 0;
-    private Boolean revive = true;
+
 
     // Construtor para o jogador
     public Jogador(String nome, List<Pokemon> pokemons) {
@@ -16,25 +15,13 @@ public class Jogador extends Treinador {
 
     public Jogador(String nome, List<Pokemon> pokemons, Integer nivel){
         super(nome, nivel, pokemons);
+        this.setPedraEvolucao(0);
+        this.setRevive(false);
     }
 
 
 
-    public Integer getPedraEvolucao() {
-        return pedraEvolucao;
-    }
 
-    public void setPedraEvolucao(Integer pedraEvolucao) {
-        this.pedraEvolucao = pedraEvolucao;
-    }
-
-    public Boolean getRevive() {
-        return revive;
-    }
-
-    public void setRevive(Boolean revive) {
-        this.revive = revive;
-    }
 
     @Override
     public String toString() {

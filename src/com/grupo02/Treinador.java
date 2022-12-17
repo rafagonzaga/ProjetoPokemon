@@ -2,6 +2,7 @@ package com.grupo02;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public abstract class Treinador {
 
@@ -9,6 +10,8 @@ public abstract class Treinador {
     private Integer nivel = 0;
     private List<Pokemon> pokemons;
     private Pokemon pokemonAtivo;
+    private Integer pedraEvolucao = 0;
+    private Boolean revive = false;
 
     public Treinador(String nome, List<Pokemon> pokemons) {
         this.nome = nome;
@@ -29,9 +32,9 @@ public abstract class Treinador {
         }
     }
 
-    public void exibirListaPokemons(List<Pokemon> pokemons) {
+    public void exibirListaPokemons() {
         int i = 1;
-        for(Pokemon pokemon : pokemons){
+        for(Pokemon pokemon : this.pokemons){
             System.out.printf("%d - %s \t| Pontos de vida: %d\n", i, pokemon, pokemon.getPontosDeVida());
             i++;
         }
@@ -50,11 +53,18 @@ public abstract class Treinador {
         adversario.pokemonAtivo.setPontosDeVida(adversario.getPokemonAtivo().getPontosDeVida() - dano);
     }
 
-    public void verificaPokemon(Treinador treinador){
-        Pokemon pokemonAtivo = treinador.getPokemonAtivo();
-        if(pokemonAtivo.getPontosDeVida() == 0){
+    public void curarPokemon(){
+        if(!this.getRevive()){
+            return;
         }
+        int pontosDeVidaAtual = this.getPokemonAtivo().getPontosDeVida();
+        int pontosDeVidaRestaurados = (int) ((this.getPokemonAtivo().getVidaInicial() - pontosDeVidaAtual) * 0.75);
+        this.getPokemonAtivo().setPontosDeVida(this.getPokemonAtivo().getPontosDeVida() + pontosDeVidaRestaurados);
+        this.setRevive(false);
     }
+
+
+
 
     public Integer calcularDano(int ataque) {
         Random rand = new Random();
@@ -135,10 +145,24 @@ public abstract class Treinador {
     }
 
     public void setPokemonAtivo(Pokemon pokemon) {
-        if (pokemon.getPontosDeVida() == 0) {
-            System.out.println("Este pokemon não pode ser escolhido.");
-        } else {
             this.pokemonAtivo = pokemon;
-        }
+//        if (pokemon.getPontosDeVida() != 0) {
+//        }
+    }
+
+    public Integer getPedraEvolucao() {
+        return pedraEvolucao;
+    }
+
+    public void setPedraEvolucao(Integer pedraEvolucao) {
+        this.pedraEvolucao = pedraEvolucao;
+    }
+
+    public Boolean getRevive() {
+        return revive;
+    }
+
+    public void setRevive(Boolean revive) {
+        this.revive = revive;
     }
 }
