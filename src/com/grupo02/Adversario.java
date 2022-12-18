@@ -27,8 +27,4 @@ public class Adversario extends Treinador {
                 "\t" + "|" + "\t" +
                 "Pokémons= " + this.getPokemons().toString();
     }
-
-    public void definirPokemonAtivo(List<Pokemon> pokemons) {
-
-    }
 }

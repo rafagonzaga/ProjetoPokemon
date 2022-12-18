@@ -12,9 +12,6 @@ public class Pokemon {
     private String[][] nomeDosGolpes;
     private String[] estagios;
 
-    Map<Integer, String[]> ataquesPorNivel = new HashMap<>();
-
-
     public Pokemon(String nome, Integer nivel, Integer pontosDeVida) {
         this.nome = nome;
         this.nivel = nivel;
@@ -64,14 +61,6 @@ public class Pokemon {
 
     public void setNomeDosGolpes(String[][] nomeDosGolpes) {
         this.nomeDosGolpes = nomeDosGolpes;
-    }
-
-    public Map<Integer, String[]> getAtaquesPorNivel() {
-        return ataquesPorNivel;
-    }
-
-    public void setAtaquesPorNivel(Map<Integer, String[]> ataquesPorNivel) {
-        this.ataquesPorNivel = ataquesPorNivel;
     }
 
     public String[] getEstagios() {

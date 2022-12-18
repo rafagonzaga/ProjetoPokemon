@@ -26,7 +26,6 @@ public abstract class Treinador {
     public void exibirListaGolpes(Pokemon pokemonAtivo) {
 
         for (int i = 0; i < pokemonAtivo.getNomeDosGolpes()[1].length; i++) {
-//            System.out.println(i + pokemonAtivo.getNomeDosGolpes()[nivel][i]);
             System.out.printf("%d - %s\n", i + 1, pokemonAtivo.getNomeDosGolpes()[pokemonAtivo.getNivel()][i]);
         }
     }
@@ -48,10 +47,8 @@ public abstract class Treinador {
             System.out.printf("O golpe %s do %s causou %d pontos de dano.\n",
                     this.getPokemonAtivo().getNomeDosGolpes()[this.getPokemonAtivo().getNivel()][ataque - 1],
                     this.getPokemonAtivo().getNome(), dano);
-//            System.out.printf("O %s foi derrotado", adversario.getPokemonAtivo().getNome());
             return;
         }
-//        System.out.println(adversario.getPokemonAtivo().getNome() + " perdeu " + dano + " pontos de vida");
         System.out.printf("O golpe %s do %s causou %d pontos de dano.\n",
                 this.getPokemonAtivo().getNomeDosGolpes()[this.getPokemonAtivo().getNivel()][ataque - 1],
                 this.getPokemonAtivo().getNome(), dano);
@@ -120,7 +117,7 @@ public abstract class Treinador {
                     dano = 110 + danoBalanceado;
                     break;
                 case 3:
-                    dano = 120 + danoBalanceado;
+                    dano = 520 + danoBalanceado;
                     break;
             }
         } else if (nivelPokemom == 1) {
@@ -133,7 +130,7 @@ public abstract class Treinador {
                     dano = 135 + danoBalanceado;
                     break;
                 case 3:
-                    dano = 145 + danoBalanceado;
+                    dano = 545 + danoBalanceado;
                     break;
             }
         } else if (nivelPokemom == 2) {
@@ -146,7 +143,7 @@ public abstract class Treinador {
                     dano = 160 + danoBalanceado;
                     break;
                 case 3:
-                    dano = 170 + danoBalanceado;
+                    dano = 570 + danoBalanceado;
                     break;
             }
         }
@@ -183,8 +180,6 @@ public abstract class Treinador {
 
     public void setPokemonAtivo(Pokemon pokemon) {
         this.pokemonAtivo = pokemon;
-//        if (pokemon.getPontosDeVida() != 0) {
-//        }
     }
 
     public Integer getPedraEvolucao() {
