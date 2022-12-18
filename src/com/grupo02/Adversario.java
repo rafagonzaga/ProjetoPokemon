@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Adversario extends Treinador {
 
-    private List<Pokemon> pokemons;
     private String fraseDeEfeito;
 
 
@@ -23,14 +22,8 @@ public class Adversario extends Treinador {
 
     @Override
     public String toString() {
-        return "Adversario{" +
-                " Nome=" + this.getNome() +
-                " Frase de efeito=" + this.fraseDeEfeito +
-                " pokemons=" + this.getPokemons().toString() +
-                '}';
-    }
-
-    public void definirPokemonAtivo(List<Pokemon> pokemons) {
-
+        return  "Nome= " + this.getNome() +
+                "\t" + "|" + "\t" +
+                "Pokémons= " + this.getPokemons().toString();
     }
 }

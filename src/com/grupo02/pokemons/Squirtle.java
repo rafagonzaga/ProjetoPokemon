@@ -4,10 +4,13 @@ import com.grupo02.Pokemon;
 
 public class Squirtle extends Pokemon {
 
+    private Integer hpInicial = 475;
     // "Squirtle", "Wartortle", "Blastoise"
 
     public Squirtle(){
-        super("Squirtle", 0, 450);
+        super("Squirtle", 0);
+        this.setVidaInicial(hpInicial);
+        this.setPontosDeVida(hpInicial);
         this.setEstagios(new String[]{"Psyduck", "Golduck"});
         this.setNomeDosGolpes(new String[][]{   {"Revólver d'Água", "Cauda de Água", "Rajada de Bolhas"},
                                                 {"Hidro Bomba", "Quebra Crânio", "Raio de Gelo"},
@@ -19,8 +22,4 @@ public class Squirtle extends Pokemon {
         super(nome, nivel, pontosDeVida);
     }
 
-    @Override
-    public String toString() {
-        return this.getNome();
-    }
 }

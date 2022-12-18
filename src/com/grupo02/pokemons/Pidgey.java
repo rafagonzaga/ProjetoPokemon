@@ -4,10 +4,13 @@ import com.grupo02.Pokemon;
 
 public class Pidgey extends Pokemon {
 
+    private Integer hpInicial = 480;
     // "Pidgey", "Pidgeotto", "Pidgeot"
 
     public Pidgey(){
-        super("Pidgey", 0, 480);
+        super("Pidgey", 0);
+        this.setVidaInicial(hpInicial);
+        this.setPontosDeVida(hpInicial);
         this.setEstagios(new String[]{"Pidgey", "Pidgeotto", "Pidgeot"});
         this.setNomeDosGolpes(new String[][]{   {"Ventania", "Ataque de Asa", "Bicada"},
                                                 {"Golpe Aéreo", "Corte Duplo", "Rajada de Vento"},
@@ -19,8 +22,4 @@ public class Pidgey extends Pokemon {
         super(nome, nivel, pontosDeVida);
     }
 
-    @Override
-    public String toString() {
-        return this.getNome();
-    }
 }

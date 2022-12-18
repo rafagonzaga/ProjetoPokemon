@@ -4,10 +4,13 @@ import com.grupo02.Pokemon;
 
 public class Machop extends Pokemon {
 
+    private Integer hpInicial = 450;
     // "Machop", "Machoke", "Machamp"
 
     public Machop(){
-        super("Machop", 0, 450);
+        super("Machop", 0);
+        this.setVidaInicial(hpInicial);
+        this.setPontosDeVida(hpInicial);
         this.setEstagios(new String[]{"Machop", "Machoke", "Machamp"});
         this.setNomeDosGolpes(new String[][]{   {"Soco", "Golpe Cruzado", "Batida de Pedra"},
                                                 {"Força", "Arremesso Sísmico", "Explosão Focalizada"},
@@ -19,8 +22,4 @@ public class Machop extends Pokemon {
         super(nome, nivel, pontosDeVida);
     }
 
-    @Override
-    public String toString() {
-        return this.getNome();
-    }
 }

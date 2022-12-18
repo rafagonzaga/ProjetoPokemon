@@ -6,8 +6,13 @@ public class Pikachu extends Pokemon {
 
     // "Pikachu", "Raichu"
 
-    public Pikachu(){
-        super("Pikachu", 0, 500);
+    private Integer hpInicial = 50000;
+
+
+    public Pikachu() {
+        super("Pikachu", 0);
+        this.setVidaInicial(hpInicial);
+        this.setPontosDeVida(hpInicial);
         this.setEstagios(new String[]{"Pikachu", "Raichu"});
         this.setNomeDosGolpes(new String[][]{   {"Ataque rápido", "Cauda de Ferro", "Investida Trovão"},
                                                 {"Trovoada de choques", "Ataque Relâmpago", "Bola Elétrica"}
@@ -19,9 +24,5 @@ public class Pikachu extends Pokemon {
         super(nome, nivel, pontosDeVida);
     }
 
-    @Override
-    public String toString() {
-        return this.getNome();
-    }
 
 }
