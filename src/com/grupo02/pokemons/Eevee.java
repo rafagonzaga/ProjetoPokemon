@@ -21,8 +21,4 @@ public class Eevee extends Pokemon {
         super(nome, nivel, pontosDeVida);
     }
 
-    @Override
-    public String toString() {
-        return this.getNome();
-    }
 }

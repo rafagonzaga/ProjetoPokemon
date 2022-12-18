@@ -81,4 +81,8 @@ public class Pokemon {
     public void setEstagios(String[] estagios) {
         this.estagios = estagios;
     }
+
+    public String toString() {
+        return this.getNome() + " - evolução: " + this.getNivel();
+    }
 }

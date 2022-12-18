@@ -19,6 +19,13 @@ public class Jogador extends Treinador {
         this.setRevive(false);
     }
 
+    public void recupearPontosDeVidaEquipe(){
+        for(Pokemon pokemon : this.getPokemons()){
+            pokemon.setPontosDeVida(pokemon.getVidaInicial());
+        }
+        this.setPedraEvolucao(this.getPedraEvolucao()+1);
+        this.setRevive(true);
+    }
 
 
 

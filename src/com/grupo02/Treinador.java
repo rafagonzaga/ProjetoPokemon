@@ -2,7 +2,6 @@ package com.grupo02;
 
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public abstract class Treinador {
 
@@ -11,7 +10,7 @@ public abstract class Treinador {
     private List<Pokemon> pokemons;
     private Pokemon pokemonAtivo;
     private Integer pedraEvolucao = 0;
-    private Boolean revive = false;
+    private Boolean revive = true;
 
     public Treinador(String nome, List<Pokemon> pokemons) {
         this.nome = nome;
@@ -28,14 +27,14 @@ public abstract class Treinador {
 
         for (int i = 0; i < pokemonAtivo.getNomeDosGolpes()[1].length; i++) {
 //            System.out.println(i + pokemonAtivo.getNomeDosGolpes()[nivel][i]);
-            System.out.printf("%d - %s\n", i+1 , pokemonAtivo.getNomeDosGolpes()[pokemonAtivo.getNivel()][i]);
+            System.out.printf("%d - %s\n", i + 1, pokemonAtivo.getNomeDosGolpes()[pokemonAtivo.getNivel()][i]);
         }
     }
 
     public void exibirListaPokemons() {
         int i = 1;
-        for(Pokemon pokemon : this.pokemons){
-            System.out.printf("%d - %s \t| Pontos de vida: %d\n", i, pokemon, pokemon.getPontosDeVida());
+        for (Pokemon pokemon : this.pokemons) {
+            System.out.printf("%d - %s \t| Pontos de vida: %d\n", i, pokemon.getNome(), pokemon.getPontosDeVida());
             i++;
         }
     }
@@ -46,15 +45,21 @@ public abstract class Treinador {
         int pontosDeVidaPokemonAdversario = adversario.getPokemonAtivo().getPontosDeVida();
         if (dano > pontosDeVidaPokemonAdversario) {
             adversario.pokemonAtivo.setPontosDeVida(0);
-            System.out.println(adversario.getPokemonAtivo().getNome() + " foi derrotado");
+            System.out.printf("O golpe %s do %s causou %d pontos de dano.\n",
+                    this.getPokemonAtivo().getNomeDosGolpes()[this.getPokemonAtivo().getNivel()][ataque - 1],
+                    this.getPokemonAtivo().getNome(), dano);
+//            System.out.printf("O %s foi derrotado", adversario.getPokemonAtivo().getNome());
             return;
         }
-        System.out.println(adversario.getPokemonAtivo().getNome() + " perdeu " + dano + " pontos de vida");
+//        System.out.println(adversario.getPokemonAtivo().getNome() + " perdeu " + dano + " pontos de vida");
+        System.out.printf("O golpe %s do %s causou %d pontos de dano.\n",
+                this.getPokemonAtivo().getNomeDosGolpes()[this.getPokemonAtivo().getNivel()][ataque - 1],
+                this.getPokemonAtivo().getNome(), dano);
         adversario.pokemonAtivo.setPontosDeVida(adversario.getPokemonAtivo().getPontosDeVida() - dano);
     }
 
-    public void curarPokemon(){
-        if(!this.getRevive()){
+    public void curarPokemon() {
+        if (!this.getRevive()) {
             return;
         }
         int pontosDeVidaAtual = this.getPokemonAtivo().getPontosDeVida();
@@ -63,7 +68,40 @@ public abstract class Treinador {
         this.setRevive(false);
     }
 
+    public Boolean evoluirPokemon(Pokemon pokemon) {
+        if (this.getPedraEvolucao() == 0) {
+            System.out.println("Você não tem a pedra da evolução.");
+            System.out.println("Impossível evoluir o seu pokémon.");
+            return false;
+        }
 
+        int nivelAtual = pokemon.getNivel();
+        int nivelMaximo = pokemon.getEstagios().length - 1;
+        if (nivelAtual < nivelMaximo) {
+            switch (nivelAtual) {
+                case 0:
+                    pokemon.setNivel(nivelAtual + 1);
+                    pokemon.setNome(pokemon.getEstagios()[1]);
+                    pokemon.setVidaInicial(pokemon.getVidaInicial() + 100);
+                    pokemon.setPontosDeVida(pokemon.getVidaInicial());
+                    break;
+                case 1:
+                    pokemon.setNivel(nivelAtual + 1);
+                    pokemon.setNome(pokemon.getEstagios()[2]);
+                    pokemon.setVidaInicial(pokemon.getVidaInicial() + 150);
+                    pokemon.setPontosDeVida(pokemon.getVidaInicial());
+                    break;
+            }
+            this.setPedraEvolucao(this.getPedraEvolucao() - 1);
+        } else {
+            if (this instanceof Jogador) {
+                System.out.println("Este pokémon já atingiu o máximo da evolução");
+                System.out.println("Selecione outro pokémon para evoluir.");
+                return false;
+            }
+        }
+        return true;
+    }
 
 
     public Integer calcularDano(int ataque) {
@@ -115,7 +153,6 @@ public abstract class Treinador {
         return dano;
     }
 
-
     public String getNome() {
         return nome;
     }
@@ -145,7 +182,7 @@ public abstract class Treinador {
     }
 
     public void setPokemonAtivo(Pokemon pokemon) {
-            this.pokemonAtivo = pokemon;
+        this.pokemonAtivo = pokemon;
 //        if (pokemon.getPontosDeVida() != 0) {
 //        }
     }

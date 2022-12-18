@@ -6,7 +6,7 @@ public class Pikachu extends Pokemon {
 
     // "Pikachu", "Raichu"
 
-    private Integer hpInicial = 500;
+    private Integer hpInicial = 5000;
 
 
     public Pikachu() {
@@ -24,18 +24,5 @@ public class Pikachu extends Pokemon {
         super(nome, nivel, pontosDeVida);
     }
 
-    /*
-        public Integer getVidaInicial() {
-            return vidaInicial;
-        }
-
-        public void setVidaInicial(Integer vidaInicial) {
-            this.vidaInicial = vidaInicial;
-        }
-    */
-    @Override
-    public String toString() {
-        return this.getNome();
-    }
 
 }
