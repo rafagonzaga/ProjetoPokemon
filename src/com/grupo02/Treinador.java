@@ -33,7 +33,7 @@ public abstract class Treinador {
     public void exibirListaPokemons() {
         int i = 1;
         for (Pokemon pokemon : this.pokemons) {
-            System.out.printf("%d - %s \t| Pontos de vida: %d\n", i, pokemon.getNome(), pokemon.getPontosDeVida());
+            System.out.printf("%d - %-15s \t| Pontos de vida: %d\n", i, pokemon.getNome(), pokemon.getPontosDeVida());
             i++;
         }
     }
@@ -67,13 +67,12 @@ public abstract class Treinador {
 
     public Boolean evoluirPokemon(Pokemon pokemon) {
         if (this.getPedraEvolucao() == 0) {
-            System.out.println("Você não tem a pedra da evolução.");
-            System.out.println("Impossível evoluir o seu pokémon.");
             return false;
         }
 
         int nivelAtual = pokemon.getNivel();
         int nivelMaximo = pokemon.getEstagios().length - 1;
+        String nomeAnterior = pokemon.getNome();
         if (nivelAtual < nivelMaximo) {
             switch (nivelAtual) {
                 case 0:
@@ -88,6 +87,11 @@ public abstract class Treinador {
                     pokemon.setVidaInicial(pokemon.getVidaInicial() + 150);
                     pokemon.setPontosDeVida(pokemon.getVidaInicial());
                     break;
+            }
+            if (this instanceof Jogador) {
+                System.out.println("Evoluindo...");
+                System.out.printf("O seu %s evoluiu.\n", nomeAnterior);
+                System.out.printf("Agora ele é um %s e tem %d pontos de vida.\n", pokemon.getNome(), pokemon.getPontosDeVida());
             }
             this.setPedraEvolucao(this.getPedraEvolucao() - 1);
         } else {
@@ -117,7 +121,7 @@ public abstract class Treinador {
                     dano = 110 + danoBalanceado;
                     break;
                 case 3:
-                    dano = 520 + danoBalanceado;
+                    dano = 5520 + danoBalanceado;
                     break;
             }
         } else if (nivelPokemom == 1) {
@@ -130,7 +134,7 @@ public abstract class Treinador {
                     dano = 135 + danoBalanceado;
                     break;
                 case 3:
-                    dano = 545 + danoBalanceado;
+                    dano = 5545 + danoBalanceado;
                     break;
             }
         } else if (nivelPokemom == 2) {
@@ -143,7 +147,7 @@ public abstract class Treinador {
                     dano = 160 + danoBalanceado;
                     break;
                 case 3:
-                    dano = 570 + danoBalanceado;
+                    dano = 5570 + danoBalanceado;
                     break;
             }
         }

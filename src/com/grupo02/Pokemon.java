@@ -1,8 +1,5 @@
 package com.grupo02;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Pokemon {
 
     private String nome;
@@ -72,6 +69,6 @@ public class Pokemon {
     }
 
     public String toString() {
-        return this.getNome() + " - evolução: " + this.getNivel();
+        return this.getNome() + " - Evolução: " + this.getNivel();
     }
 }

@@ -4,7 +4,7 @@ import com.grupo02.Pokemon;
 
 public class Charmander extends Pokemon {
 
-    private Integer hpInicial = 1450;
+    private Integer hpInicial = 450;
     // "Charmander", "Charmeleon", "Charizard"
 
     public Charmander(){

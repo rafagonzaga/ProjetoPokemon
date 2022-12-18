@@ -6,7 +6,7 @@ public class Pikachu extends Pokemon {
 
     // "Pikachu", "Raichu"
 
-    private Integer hpInicial = 500;
+    private Integer hpInicial = 50000;
 
 
     public Pikachu() {

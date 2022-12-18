@@ -28,8 +28,7 @@ public class Batalha {
         int quantidadeBatalhas = 1;
         while (!listaNpcs.isEmpty()) {
             Adversario npc = escolherNPC(listaNpcs, entrada);
-            // System.out.println(listaNpcs);
-            System.out.printf("Estes são os pokémons de %s:\n", npc.getNome());
+            System.out.printf("\nEstes são os pokémons de %s:\n", npc.getNome());
             npc.exibirListaPokemons();
             System.out.printf("\nAgora vamos definir o seu pokémon para a %dª batalha. Veja a sua lista: \n", quantidadeBatalhas);
             exibirTodosPokemons(jogador.getPokemons());
@@ -60,7 +59,9 @@ public class Batalha {
             }
             quantidadeBatalhas++;
         }
+        //System.out.println("\nPartidas que você venceu: " + quantidadeBatalhas);
         System.out.println("Fim de jogo. Até a próxima.");
+
         entrada.close();
     }
 
@@ -95,271 +96,275 @@ public class Batalha {
     }
 
 
-public static List<Adversario> gerarListaNPCS(List<Pokemon> listaDePokemons,Random rand){
-        List<Adversario> listaNpcs=new ArrayList<>();
-//        exibirTodosPokemons(listaDePokemons);
-        List<Pokemon> listaPokemonsNpc1=escolherPokemonsNPC(listaDePokemons,rand);
-        List<Pokemon> listaPokemonsNpc2=escolherPokemonsNPC(listaDePokemons,rand);
-        List<Pokemon> listaPokemonsNpc3=escolherPokemonsNPC(listaDePokemons,rand);
+    public static List<Adversario> gerarListaNPCS(List<Pokemon> listaDePokemons, Random rand) {
+        List<Adversario> listaNpcs = new ArrayList<>();
+        List<Pokemon> listaPokemonsNpc1 = escolherPokemonsNPC(listaDePokemons, rand);
+        List<Pokemon> listaPokemonsNpc2 = escolherPokemonsNPC(listaDePokemons, rand);
+        List<Pokemon> listaPokemonsNpc3 = escolherPokemonsNPC(listaDePokemons, rand);
 
-        Adversario npc1=new Adversario("Leomin",listaPokemonsNpc1,"Só falta passar para Java");
-        Adversario npc2=new Adversario("Renato",listaPokemonsNpc2,"Quem é o cantor?");
+        Adversario npc1 = new Adversario("Leomin", listaPokemonsNpc1, "Só falta passar para Java");
+        Adversario npc2 = new Adversario("Renato", listaPokemonsNpc2, "Quem é o cantor?");
         npc2.setPedraEvolucao(1);
         npc2.evoluirPokemon(npc2.getPokemons().get(rand.nextInt(3)));
-        Adversario npc3=new Adversario("Inseguro",listaPokemonsNpc3,"Eu vou te derrotar?");
+        Adversario npc3 = new Adversario("Inseguro", listaPokemonsNpc3, "Eu vou te derrotar?");
         npc3.setPedraEvolucao(2);
-        while(npc3.getPedraEvolucao()>0){
-        npc3.evoluirPokemon(npc3.getPokemons().get(rand.nextInt(3)));
+        while (npc3.getPedraEvolucao() > 0) {
+            npc3.evoluirPokemon(npc3.getPokemons().get(rand.nextInt(3)));
         }
-//        exibirTodosPokemons(listaDePokemons);
         listaNpcs.add(npc1);
         listaNpcs.add(npc2);
         listaNpcs.add(npc3);
         return listaNpcs;
-        }
+    }
 
-public static Adversario escolherNPC(List<Adversario> listaNpcs,Scanner entrada){
-        System.out.println("\nEscolha um adversário:");
-        int i=1;
-        for(Adversario npc:listaNpcs){
-        System.out.println(i+" - "+npc);
-        i++;
+    public static Adversario escolherNPC(List<Adversario> listaNpcs, Scanner entrada) {
+        System.out.println("\nEstes são os adversários disponíveis:");
+        int i = 1;
+        for (Adversario npc : listaNpcs) {
+            System.out.println(i + " - " + npc);
+            i++;
         }
-        Adversario npcEscolhido=listaNpcs.get(entrada.nextInt()-1);
-        System.out.println("Você escolheu: "+npcEscolhido.getNome());
-        System.out.println("Veja o que ele tem pra te dizer: "+npcEscolhido.getFraseDeEfeito());
+        System.out.print("Escolha um adversário: ");
+        Adversario npcEscolhido = listaNpcs.get(entrada.nextInt() - 1);
+        System.out.println("\nVocê escolheu: " + npcEscolhido.getNome());
+        System.out.println("Veja o que ele tem pra te dizer: " + npcEscolhido.getFraseDeEfeito());
         listaNpcs.remove(npcEscolhido);
         return npcEscolhido;
-        }
+    }
 
-public static void exibirLogo(){
-        System.out.println("                                  ,'\\\n"+
-        "    _.----.        ____         ,'  _\\   ___    ___     ____\n"+
-        "_,-'       `.     |    |  /`.   \\,-'    |   \\  /   |   |    \\  |`.\n"+
-        "\\      __    \\    '-.  | /   `.  ___    |    \\/    |   '-.   \\ |  |\n"+
-        " \\.    \\ \\   |  __  |  |/    ,','_  `.  |          | __  |    \\|  |\n"+
-        "   \\    \\/   /,' _`.|      ,' / / / /   |          ,' _`.|     |  |\n"+
-        "    \\     ,-'/  /   \\    ,'   | \\/ / ,`.|         /  /   \\  |     |\n"+
-        "     \\    \\ |   \\_/  |   `-.  \\    `'  /|  |    ||   \\_/  | |\\    |\n"+
-        "      \\    \\ \\      /       `-.`.___,-' |  |\\  /| \\      /  | |   |\n"+
-        "       \\    \\ `.__,'|  |`-._    `|      |__| \\/ |  `.__,'|  | |   |\n"+
-        "        \\_.-'       |__|    `-._ |              '-.|     '-.| |   |\n"+
-        "                                `'                            '-._|");
-        }
+    public static void exibirLogo() {
+        System.out.println("                                  ,'\\\n" +
+                "    _.----.        ____         ,'  _\\   ___    ___     ____\n" +
+                "_,-'       `.     |    |  /`.   \\,-'    |   \\  /   |   |    \\  |`.\n" +
+                "\\      __    \\    '-.  | /   `.  ___    |    \\/    |   '-.   \\ |  |\n" +
+                " \\.    \\ \\   |  __  |  |/    ,','_  `.  |          | __  |    \\|  |\n" +
+                "   \\    \\/   /,' _`.|      ,' / / / /   |          ,' _`.|     |  |\n" +
+                "    \\     ,-'/  /   \\    ,'   | \\/ / ,`.|         /  /   \\  |     |\n" +
+                "     \\    \\ |   \\_/  |   `-.  \\    `'  /|  |    ||   \\_/  | |\\    |\n" +
+                "      \\    \\ \\      /       `-.`.___,-' |  |\\  /| \\      /  | |   |\n" +
+                "       \\    \\ `.__,'|  |`-._    `|      |__| \\/ |  `.__,'|  | |   |\n" +
+                "        \\_.-'       |__|    `-._ |              '-.|     '-.| |   |\n" +
+                "                                `'                            '-._|");
+    }
 
-public static void exibirOpcoes(Jogador jogador,Scanner entrada){
-        if(jogador.getPokemonAtivo().getPontosDeVida()==0){
-        System.out.println("O que deseja fazer:");
-        System.out.println("1 - Definir um novo pokémon para a batalha:");
-        System.out.println("2 - Reviver o seu pokémon");
-        switch(entrada.nextInt()){
-        case 1:
-        System.out.println("Qual será o seu próximo pokémon?");
-        while(jogador.getPokemonAtivo().getPontosDeVida()==0){
-        jogador.exibirListaPokemons();
-        jogador.setPokemonAtivo(jogador.getPokemons().get(entrada.nextInt()-1));
-        if(jogador.getPokemonAtivo().getPontosDeVida()==0){
-        System.out.println("\nEste pokémon não pode ser escolhido.");
-        System.out.println("Escolha um outro pokémon.\n");
+    public static void exibirOpcoes(Jogador jogador, Scanner entrada) {
+        if (jogador.getPokemonAtivo().getPontosDeVida() == 0) {
+            System.out.println("\nO que deseja fazer:");
+            System.out.println("1 - Definir um novo pokémon para a batalha:");
+            System.out.println("2 - Reviver o seu pokémon");
+            switch (entrada.nextInt()) {
+                case 1:
+                    System.out.println("Qual será o seu próximo pokémon?");
+                    while (jogador.getPokemonAtivo().getPontosDeVida() == 0) {
+                        jogador.exibirListaPokemons();
+                        jogador.setPokemonAtivo(jogador.getPokemons().get(entrada.nextInt() - 1));
+                        if (jogador.getPokemonAtivo().getPontosDeVida() == 0) {
+                            System.out.println("\nEste pokémon não pode ser escolhido.");
+                            System.out.println("Escolha um outro pokémon.\n");
+                        }
+                    }
+                    break;
+                case 2:
+                    System.out.println();
+                    System.out.println("Estes são os seus pokémons: ");
+                    if (!reviverPokemon(jogador, entrada)) {
+                        exibirOpcoes(jogador, entrada);
+                        break;
+                    }
+            }
         }
+    }
+
+    public static void exibirTodosPokemons(List<Pokemon> pokemons) {
+        int i = 1;
+        for (Pokemon pokemon : pokemons) {
+            if (pokemons.size() <= 3) {
+                System.out.printf("%d - %-10s\n", i, pokemon.getNome());
+                i++;
+            } else {
+                if ((i - 1) % 2 == 0 && i != 1) {
+                    System.out.println();
+                }
+                System.out.printf("%d - %-10s", i, pokemon.getNome());
+                System.out.printf("\t\t");
+                i++;
+            }
         }
-        break;
-        case 2:
         System.out.println();
-        if(!reviverPokemon(jogador,entrada)){
-        exibirOpcoes(jogador,entrada);
-        break;
-        }
-        }
-        }
-        }
+    }
 
-public static void exibirTodosPokemons(List<Pokemon> pokemons){
-        int i=1;
-        for(Pokemon pokemon:pokemons){
-        if(pokemons.size()<=3){
-        System.out.printf("%d - %-10s\n",i,pokemon.getNome());
-        i++;
-        }else{
-        if((i-1)%2==0&&i!=1){
-        System.out.println();
-        }
-        System.out.printf("%d - %-10s",i,pokemon.getNome());
-        System.out.printf("\t\t");
-        i++;
-        }
-        }
-        System.out.println();
-        }
+    public static List<Pokemon> escolherPokemons(List<Pokemon> listaDePokemons, Scanner entrada) {
 
-public static List<Pokemon> escolherPokemons(List<Pokemon> listaDePokemons,Scanner entrada){
-//        exibirTodosPokemons(listaDePokemons);
-
-        List<Pokemon> pokemons=new ArrayList<>();
-        for(int i=0;i< 3;i++){
-        System.out.println("\nLista de pokémons disponíveis:");
-        exibirTodosPokemons(listaDePokemons);
-        System.out.printf("Escolha o %dº pokémon: ",i+1);
-        int escolha=entrada.nextInt();
-        pokemons.add(listaDePokemons.get(escolha-1));
-        listaDePokemons.remove(escolha-1);
+        List<Pokemon> pokemons = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            System.out.println("\nLista de pokémons disponíveis:");
+            exibirTodosPokemons(listaDePokemons);
+            System.out.printf("Escolha o %dº pokémon: ", i + 1);
+            int escolha = entrada.nextInt();
+            pokemons.add(listaDePokemons.get(escolha - 1));
+            listaDePokemons.remove(escolha - 1);
         }
         return pokemons;
+    }
 
+    public static List<Pokemon> escolherPokemonsNPC(List<Pokemon> listaDePokemons, Random rand) {
+        List<Pokemon> pokemons = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            int escolhaAleatoria;
+            escolhaAleatoria = rand.nextInt(listaDePokemons.size()) + 1;
+            pokemons.add(listaDePokemons.get(escolhaAleatoria - 1));
+            listaDePokemons.remove((escolhaAleatoria - 1));
         }
-
-public static List<Pokemon> escolherPokemonsNPC(List<Pokemon> listaDePokemons,Random rand){
-        List<Pokemon> pokemons=new ArrayList<>();
-        for(int i=0;i< 3;i++){
-        int escolhaAleatoria;
-        escolhaAleatoria=rand.nextInt(listaDePokemons.size())+1;
-        pokemons.add(listaDePokemons.get(escolhaAleatoria-1));
-        listaDePokemons.remove((escolhaAleatoria-1));
-        }
-//        System.out.printf("Escolhi esses pokemons: ", i + 1);
         return pokemons;
-        }
+    }
 
-public static void verificaPokemonJogador(Jogador jogador,Scanner entrada){
-        Pokemon pokemonAtivo=jogador.getPokemonAtivo();
-        if(pokemonAtivo.getPontosDeVida()==0){
-        System.out.printf("O seu %s foi derrotado.%n",pokemonAtivo.getNome());
-        if(!jogador.getRevive()&&timeFoiDerrotado(jogador)){
-        return;
+    public static void verificaPokemonJogador(Jogador jogador, Scanner entrada) {
+        Pokemon pokemonAtivo = jogador.getPokemonAtivo();
+        if (pokemonAtivo.getPontosDeVida() == 0) {
+            System.out.printf("O seu %s foi derrotado.%n", pokemonAtivo.getNome());
+            if (!jogador.getRevive() && timeFoiDerrotado(jogador)) {
+                return;
+            }
+            exibirOpcoes(jogador, entrada);
         }
-        exibirOpcoes(jogador,entrada);
-        }
-        }
+    }
 
-public static Boolean reviverPokemon(Treinador treinador,Scanner entrada){
-        if(!treinador.getRevive()){
-        System.out.println("Você já utilizou o seu revive.");
-        return false;
+    public static Boolean reviverPokemon(Treinador treinador, Scanner entrada) {
+        if (!treinador.getRevive()) {
+            System.out.println("Você já utilizou o seu revive.");
+            return false;
         }
 
         treinador.exibirListaPokemons();
         System.out.print("Escolha o pokémon para reviver: ");
-        Pokemon pokemonParaReviver=treinador.getPokemons().get(entrada.nextInt()-1);
-        if(pokemonParaReviver.getPontosDeVida()!=0){
-        System.out.println("Impossível reviver este pokémon. Ele já está vivo!!!");
-        return false;
+        Pokemon pokemonParaReviver = treinador.getPokemons().get(entrada.nextInt() - 1);
+        if (pokemonParaReviver.getPontosDeVida() != 0) {
+            System.out.println("Impossível reviver este pokémon. Ele já está vivo!!!");
+            return false;
         }
         System.out.println("Revivendo o pokémon...");
         pokemonParaReviver.setPontosDeVida(pokemonParaReviver.getVidaInicial());
-        System.out.printf("O seu %s tem agora %d pontos de vida",pokemonParaReviver.getNome(),pokemonParaReviver.getPontosDeVida());
+        System.out.printf("O seu %s tem agora %d pontos de vida.\n", pokemonParaReviver.getNome(), pokemonParaReviver.getPontosDeVida());
         treinador.setPokemonAtivo(pokemonParaReviver);
         treinador.setRevive(false);
         return true;
+    }
 
-
+    public static void verificaPokemonNpc(Treinador adversario) {
+        Pokemon pokemonAtivo = adversario.getPokemonAtivo();
+        if (pokemonAtivo.getPontosDeVida() == 0) {
+            System.out.printf("O %s do adversário foi derrotado.%n", pokemonAtivo.getNome());
         }
-
-public static void verificaPokemonNpc(Treinador adversario){
-        Pokemon pokemonAtivo=adversario.getPokemonAtivo();
-        if(pokemonAtivo.getPontosDeVida()==0){
-        System.out.printf("O %s do adversário foi derrotado.%n",pokemonAtivo.getNome());
+        while (adversario.getPokemonAtivo().getPontosDeVida() == 0) {
+            int escolha = new Random().nextInt(3);
+            adversario.setPokemonAtivo(adversario.getPokemons().get(escolha));
+            if (adversario.getPokemonAtivo().getPontosDeVida() != 0) {
+                System.out.println("O adversário irá batalhar com " + adversario.getPokemonAtivo().getNome());
+            }
         }
-        while(adversario.getPokemonAtivo().getPontosDeVida()==0){
-        int escolha=new Random().nextInt(3);
-        adversario.setPokemonAtivo(adversario.getPokemons().get(escolha));
-        }
-//        System.out.println("O pokémon ativo do adversário é: " + adversario.getPokemonAtivo().getNome());
-//            return entrada.nextInt();
+    }
 
-//        return null;
-        }
+    public static boolean timeFoiDerrotado(Treinador treinador) {
+        return calcularPontosDeVidaDaEquipe(treinador) == 0;
+    }
 
-public static boolean timeFoiDerrotado(Treinador treinador){
-        return calcularPontosDeVidaDaEquipe(treinador)==0;
-        }
-
-public static Integer calcularPontosDeVidaDaEquipe(Treinador treinador){
-        int pontosDeVidaDaEquipe=0;
-        for(Pokemon pokemon:treinador.getPokemons()){
-        pontosDeVidaDaEquipe+=pokemon.getPontosDeVida();
+    public static Integer calcularPontosDeVidaDaEquipe(Treinador treinador) {
+        int pontosDeVidaDaEquipe = 0;
+        for (Pokemon pokemon : treinador.getPokemons()) {
+            pontosDeVidaDaEquipe += pokemon.getPontosDeVida();
         }
         return pontosDeVidaDaEquipe;
-        }
+    }
 
 
-public static void vezDoJogador(Jogador jogador,Adversario adversario,Scanner entrada){
-        if(jogador.getPokemonAtivo().getPontosDeVida()<jogador.getPokemonAtivo().getVidaInicial()&&
-        jogador.getRevive()){
-        System.out.println("Sua vez. Agora você pode:");
-        System.out.println("1 - Atacar");
-        System.out.println("2 - Curar o seu pokémon");
-        System.out.println("3 - Evoluir o seu pokémon");
-        System.out.print("O que você quer fazer? ");
-        int escolha=entrada.nextInt();
-        if(escolha==1){
-//                if(timeFoiDerrotado(jogador)){
-//                    System.out.println("Impossível atacar. Seu time foi derrotado.");
-//                    vezDoJogador(jogador, adversario, entrada);
-//                }
-        System.out.printf("Escolha um dos golpes do %s:\n",jogador.getPokemonAtivo().getNome());
-//                System.out.println("Os golpes do seu pokémon ativo são:");
-        jogador.exibirListaGolpes(jogador.getPokemonAtivo());
-        int ataque=entrada.nextInt();
+    public static void vezDoJogador(Jogador jogador, Adversario adversario, Scanner entrada) {
+        if (jogador.getPokemonAtivo().getPontosDeVida() < jogador.getPokemonAtivo().getVidaInicial() &&
+                jogador.getRevive()) {
+            System.out.println("Sua vez. Agora você pode:");
+            System.out.println("1 - Atacar");
+            System.out.println("2 - Curar o seu pokémon");
+            System.out.println("3 - Evoluir um pokémon");
+            System.out.print("O que você quer fazer? ");
+            int escolha = entrada.nextInt();
+            if (escolha == 1) {
+                System.out.printf("\nEstes são os golpes do %s:\n", jogador.getPokemonAtivo().getNome());
+                jogador.exibirListaGolpes(jogador.getPokemonAtivo());
+                int ataque = entrada.nextInt();
 
-        jogador.atacar(adversario,ataque);
-        }else if(escolha==2){
-        System.out.println("Curando o pokemon...");
-        jogador.curarPokemon();
-        System.out.printf("O %s foi curado e agora tem %d pontos de vida",
-        jogador.getPokemonAtivo().getNome(),jogador.getPokemonAtivo().getPontosDeVida());
-        }else if(escolha==3){
-        System.out.println("Qual pokémon você quer evoluir?");
-        jogador.exibirListaPokemons();
-        int option=entrada.nextInt()-1;
-        if(!jogador.evoluirPokemon(jogador.getPokemons().get(option))){
-        vezDoJogador(jogador,adversario,entrada);
-        }
-        }
+                jogador.atacar(adversario, ataque);
+            } else if (escolha == 2) {
+                System.out.println("Curando o pokemon...");
+                jogador.curarPokemon();
+                System.out.printf("O %s foi curado e agora tem %d pontos de vida",
+                        jogador.getPokemonAtivo().getNome(), jogador.getPokemonAtivo().getPontosDeVida());
+            } else if (escolha == 3) {
+                System.out.println("Qual pokémon você quer evoluir?");
+                jogador.exibirListaPokemons();
+                int option = entrada.nextInt() - 1;
+                if (!jogador.evoluirPokemon(jogador.getPokemons().get(option))) {
+                    vezDoJogador(jogador, adversario, entrada);
+                }
+            }
 
-        }else{
-        System.out.println("Sua vez. Agora você pode:");
-        System.out.println("1 - Atacar");
-        System.out.print("O que você quer fazer? ");
-        int escolha=entrada.nextInt();
-        if(escolha==1){
-        System.out.printf("Escolha um dos golpes do %s:\n",jogador.getPokemonAtivo().getNome());
-        jogador.exibirListaGolpes(jogador.getPokemonAtivo());
-        System.out.print("Como quer atacar? ");
-        int ataque=entrada.nextInt();
-        jogador.atacar(adversario,ataque);
+        } else {
+            System.out.println("Sua vez. Agora você pode:");
+            System.out.println("1 - Atacar");
+            System.out.println("2 - Evoluir um pokémon");
+            System.out.print("O que você quer fazer? ");
+            int escolha = entrada.nextInt();
+            if (escolha == 1) {
+                System.out.printf("\nEstes são os golpes do %s:\n", jogador.getPokemonAtivo().getNome());
+                jogador.exibirListaGolpes(jogador.getPokemonAtivo());
+                System.out.print("Como quer atacar? ");
+                int ataque = entrada.nextInt();
+                System.out.println();
+                jogador.atacar(adversario, ataque);
+            } else if (escolha == 2) {
+                if (jogador.getPedraEvolucao() == 0) {
+                    System.out.println("Impossível! Você não tem a pedra da evolução.\n");
+                    vezDoJogador(jogador, adversario, entrada);
+                } else {
+                    System.out.println("Qual pokémon você quer evoluir?");
+                    jogador.exibirListaPokemons();
+                    int option = entrada.nextInt() - 1;
+                    if (!jogador.evoluirPokemon(jogador.getPokemons().get(option))) {
+                        vezDoJogador(jogador, adversario, entrada);
+                    }
+                }
+            }
         }
-        }
-        }
+    }
 
-public static Boolean batalhar(Jogador jogador,Adversario adversario,Scanner entrada,Random rand){
-        while(true){
+    public static Boolean batalhar(Jogador jogador, Adversario adversario, Scanner entrada, Random rand) {
+        while (true) {
 
-        vezDoJogador(jogador,adversario,entrada);
-        if(timeFoiDerrotado(adversario)){
-        System.out.println("Acabou a batalha. Você ganhou!");
-        break;
-        }
-        verificaPokemonNpc(adversario);
-        System.out.println("Agora é a vez do seu adversário");
-        int ataque=rand.nextInt(3)+1;
-        adversario.atacar(jogador,ataque);
-        verificaPokemonJogador(jogador,entrada);
-        if(timeFoiDerrotado(jogador)){
-        System.out.println("Acabou a batalha. Você perdeu!");
-        return false;
-        }
-        exibirStatusRodada(jogador,adversario);
+            vezDoJogador(jogador, adversario, entrada);
+            if (timeFoiDerrotado(adversario)) {
+                System.out.println("Acabou a batalha. Você ganhou!");
+                break;
+            }
+            verificaPokemonNpc(adversario);
+            System.out.println("Agora é a vez do seu adversário");
+            int ataque = rand.nextInt(3) + 1;
+            adversario.atacar(jogador, ataque);
+            verificaPokemonJogador(jogador, entrada);
+            if (timeFoiDerrotado(jogador)) {
+                System.out.println("Acabou a batalha. Você perdeu!");
+                return false;
+            }
+            exibirStatusRodada(jogador, adversario);
         }
         return true;
+    }
 
-        }
-
-public static void exibirStatusRodada(Jogador jogador,Adversario adversario){
-        System.out.println("\nVerifique os pontos de vida dos pokémons após esta rodada: ");
+    public static void exibirStatusRodada(Jogador jogador, Adversario adversario) {
+        System.out.println("------------------------------------------------------------");
+        System.out.println("Verifique os pontos de vida dos pokémons após esta rodada: ");
         System.out.printf("Equipe %s: %s tem %d pontos de vida.\n",
-        jogador.getNome(),jogador.getPokemonAtivo().getNome(),jogador.getPokemonAtivo().getPontosDeVida());
-        System.out.printf("Equipe %s: %s tem %d pontos de vida.\n\n",
-        adversario.getNome(),adversario.getPokemonAtivo().getNome(),adversario.getPokemonAtivo().getPontosDeVida());
-        }
+                jogador.getNome(), jogador.getPokemonAtivo().getNome(), jogador.getPokemonAtivo().getPontosDeVida());
+        System.out.printf("Equipe %s: %s tem %d pontos de vida.\n",
+                adversario.getNome(), adversario.getPokemonAtivo().getNome(), adversario.getPokemonAtivo().getPontosDeVida());
+        System.out.println("------------------------------------------------------------");
+    }
 
-        }
+}
